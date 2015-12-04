@@ -2,6 +2,7 @@ mongoClient = require('mongodb').MongoClient
 config = require '../config'
 url = config.databaseUri
 q = require 'q'
+log = require '../../common/services/log'
 
 dbConnection = undefined
 
@@ -10,10 +11,10 @@ connect = ->
   if !dbConnection
     mongoClient.connect url, (err, db) ->
       if err
-        console.log 'Unable to connect'
-        console.log err
+        log.error 'Unable to connect'
+        log.error err
       else
-        console.log 'Connected'
+        log.info 'Connected'
         dbConnection = db
         deferred.resolve db
   else

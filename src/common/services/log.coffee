@@ -9,7 +9,7 @@ colors.setTheme
   data: 'grey',
   help: 'cyan',
   warn: 'yellow',
-  debug: 'blue',
+  debug: 'rainbow',
   error: 'red'
 
 info = (message) ->
