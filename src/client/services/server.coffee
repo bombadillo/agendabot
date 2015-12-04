@@ -2,11 +2,10 @@ express = require('express')
 app = express()
 logRetriever = require './messageHistoryRetriever'
 stayAlive = require './stayAlive'
+log = require '../../common/services/log'
 
 start = ->
   app.set('port', (process.env.PORT || 5000))
-
-  console.log __dirname
   app.use(express.static(__dirname + '/../'))
 
   app.set('views', __dirname + "/../views")
@@ -19,7 +18,7 @@ start = ->
   )
 
   app.listen(app.get('port'), ->
-    console.log('The app is running on port', app.get('port'))
+    log.info "The app is running on port #{app.get('port')}"
   )
 
   stayAlive.stayAlive()

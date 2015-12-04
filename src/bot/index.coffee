@@ -1,10 +1,10 @@
 slack = require './services/slackClient'
 messageHandler = require './services/messageHandler'
-userToAnnoy = ''
+log = require '../common/services/log'
 
 start = ->
   slack.on 'open', ->
-    console.log "Connected to #{slack.team.name} as @#{slack.self.name}"
+    log.info "Connected to #{slack.team.name} as @#{slack.self.name}"
 
   slack.on 'message', (message) ->
     messageHandler.handle message
