@@ -1,8 +1,11 @@
 slack = require './services/slackClient'
 messageHandler = require './services/messageHandler'
 log = require '../common/services/log'
+eventListener = require './services/events/index'
 
 start = ->
+  eventListener.setupListeners()
+
   slack.on 'open', ->
     log.info "Connected to #{slack.team.name} as @#{slack.self.name}"
 
