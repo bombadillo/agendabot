@@ -18,6 +18,10 @@ info = (message) ->
 error = (message) ->
   console.log colors.error(message)
 
+debug = (message) ->
+  console.log colors.debug(message)
+
 exports = this
 this.info = info
 this.error = error
+this.debug = debug
