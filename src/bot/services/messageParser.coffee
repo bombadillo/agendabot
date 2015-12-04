@@ -1,7 +1,9 @@
-parseUserId = (message) ->
-  userIdSection = message.text.split('>:')[0]
-  userId = userIdSection.replace('<@', '')
-  return userId
+messageTextConverter = require './messageTextConverter'
+
+parse = (message) ->
+  parsedMessage = messageTextConverter.toObject message.text
+  return parsedMessage
+
 
 exports = this
-exports.parseUserId = parseUserId
+exports.parse = parse
