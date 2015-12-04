@@ -1,9 +1,8 @@
 messageTextConverter = require './messageTextConverter'
 
 parse = (message) ->
-  parsedMessage = messageTextConverter.toObject message.text
-  return parsedMessage
-
+  message.parsedMessage = messageTextConverter.toObject message.text
+  return message
 
 exports = this
 exports.parse = parse

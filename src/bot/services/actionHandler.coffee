@@ -3,13 +3,15 @@ meetingHandler = require './meetingHandler'
 
 process = (message) ->
   log.info "processing action #{message.action}"
-  switch message.action
+  action = message.parsedMessage.action
+
+  switch action
     when 'createmeeting'
       log.debug 'create meeting'
-      meetingHandler.create message.value
+      meetingHandler.create message
     when 'getmeetings'
       log.debug 'get meetings'
-      meetingHandler.getAll()
+      meetingHandler.getAll message
     when 'addagenda'
       log.debug 'add agenda'
 

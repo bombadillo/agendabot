@@ -1,4 +1,4 @@
-slack = require '../slackClient'
+slack = require './slackClient'
 
 sendMessageById = (id, message) ->
   channel = slack.getChannelGroupOrDMByID id

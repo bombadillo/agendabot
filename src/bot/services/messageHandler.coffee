@@ -4,9 +4,9 @@ actionHandler = require './actionHandler'
 messageParser = require './messageParser'
 
 handle = (message) ->
-  parsedMessage = messageParser.parse message
-  if parsedMessage.userId == botHandler.getId message
-    actionHandler.process parsedMessage
+  message = messageParser.parse message
+  if message.parsedMessage.userId == botHandler.getId message
+    actionHandler.process message
   else
     console.log ':('
 

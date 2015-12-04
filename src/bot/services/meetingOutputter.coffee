@@ -1,12 +1,13 @@
 log = require '../../common/services/log'
-eventEmitter = require './events/eventHandler'
+messageSender = require './messageSender'
+channel = require './channel'
 
-output = (meetings) ->
+output = (message) ->
   outputString = ''
-  for meeting in meetings
+  for meeting in message.meetings
     outputString += meeting.name
   log.debug 'generated meetings string'
-  eventEmitter.emit 'sendMessage', outputString
+  channel.sendMessageById message.channel, outputString
 
 exports = this
 exports.output = output

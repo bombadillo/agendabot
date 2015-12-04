@@ -3,13 +3,14 @@ log = require '../../common/services/log'
 q = require 'q'
 meetingOutputter = require './meetingOutputter'
 
-create = (name) ->
+create = (message) ->
 
-getAll = ->
+getAll = (message) ->
   log.debug 'query all'
   deferred = q.defer()
   dbHandler.getAll('meeting').then (meetings) ->
-    meetingOutputter.output meetings
+    message.meetings = meetings
+    meetingOutputter.output message
 
 exports = this
 exports.create = create
