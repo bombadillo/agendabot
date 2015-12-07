@@ -1,4 +1,3 @@
-messageSender = require './messageSender'
 channel = require './channel'
 
 output = (message) ->

@@ -1,7 +1,7 @@
 dbHandler = require '../../common/services/dbHandler'
-log = require '../../common/services/log'
 q = require 'q'
 meetingOutputter = require './meetingOutputter'
+bot = require './botHandler'
 
 meetingDbName = 'meeting'
 
@@ -11,11 +11,10 @@ create = (message) ->
     if !meeting
       obj = name: meetingName
       dbHandler.insert(meetingDbName, obj).then (result) ->
-        message = result ? 'meeting added' : 'meeting not added'
-        log.debug message
+        outputText = if result then 'meeting added' else 'meeting not added'
+        bot.reply message, outputText
     else
-      log.error 'meeting exists'
-      # output error message to user
+      outputText = 'meeting exists'
 
 getAll = (message) ->
   deferred = q.defer()
