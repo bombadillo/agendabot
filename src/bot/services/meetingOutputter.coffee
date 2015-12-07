@@ -5,7 +5,6 @@ output = (message) ->
   for meeting in message.meetings
     outputText += "#{meeting.name}, "
   outputText = outputText.slice 0, -2
-  console.log outputText
   bot.reply message, outputText
 
 exports = this

@@ -14,7 +14,19 @@ create = (message) ->
         outputText = if result then 'meeting added' else 'meeting not added'
         bot.reply message, outputText
     else
-      outputText = 'meeting exists'
+      bot.reply message, 'meeting exists'
+
+remove = (message) ->
+  meetingName = message.parsedMessage.value
+  getOneByName(meetingName).then (meeting) ->
+    if meeting
+      obj = name: meetingName
+      dbHandler.removeOne(meetingDbName, obj).then (resultObj) ->
+        result = resultObj.result.ok
+        outputText = if result then 'meeting removed' else 'meeting not removed'
+        bot.reply message, outputText
+    else
+      bot.reply message, 'meeting does not exist'
 
 getAll = (message) ->
   deferred = q.defer()
@@ -31,3 +43,4 @@ getOneByName = (name) ->
 exports = this
 exports.create = create
 exports.getAll = getAll
+exports.remove = remove

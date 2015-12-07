@@ -9,6 +9,9 @@ process = (message) ->
     when 'createmeeting'
       log.debug 'create meeting'
       meetingHandler.create message
+    when 'removemeeting'
+      log.debug 'delete meeting'
+      meetingHandler.remove message
     when 'getmeetings'
       log.debug 'get meetings'
       meetingHandler.getAll message

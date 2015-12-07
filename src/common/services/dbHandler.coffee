@@ -64,6 +64,18 @@ update = (collection, data) ->
     )
   return deferred.promise
 
+removeOne = (collection, params) ->
+  deferred = q.defer()
+  dbConnector.connect().then (db) ->
+    collection = db.collection(collection)
+    collection.deleteOne(params, (err, result) ->
+      if err
+        console.log err
+      else
+        deferred.resolve result
+    )
+  return deferred.promise
+
 
 exports = this
 exports.getAll = getAll
@@ -71,3 +83,4 @@ exports.getOne = getOne
 exports.insert = insert
 exports.getById = getById
 exports.update = update
+exports.removeOne = removeOne
