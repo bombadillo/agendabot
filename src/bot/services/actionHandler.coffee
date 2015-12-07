@@ -16,13 +16,16 @@ process = (message) ->
       meetingHandler.remove message
     when 'getmeetings'
       log.debug 'get meetings'
-      meetingHandler.getAll message
+      meetingHandler.outputAll message
     when 'addagenda'
       log.debug 'add agenda'
       agendaHandler.create message
     when 'getagenda'
       log.debug 'get agenda'
-      agendaHandler.getAllForMeeting message
+      agendaHandler.outputAllForMeeting message
+    when 'getagendas'
+      log.debug 'get agendas'
+      agendaHandler.getAll message
     when 'clearagenda'
       log.debug 'clear agenda'
       agendaHandler.clearAllForMeeting message

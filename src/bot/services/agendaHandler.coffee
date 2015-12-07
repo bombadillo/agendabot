@@ -4,6 +4,7 @@ bot = require './botHandler'
 meetingHandler = require './meetingHandler'
 agendaParser = require './agendaInputParser'
 agendaOutputter = require './agendaOutputter'
+agendaMeetingMapper = require './agendaMeetingMapper'
 
 agendaDbName = 'agenda'
 
@@ -20,18 +21,27 @@ create = (message) ->
     else
       bot.reply message, 'meeting does not exist'
 
-getAllForMeeting = (message) ->
-  meetingName = message.parsedMessage.value
+getAllForMeeting = (meetingName) ->
+  deferred = q.defer()
   meetingHandler.getOneByName(meetingName).then (meeting) ->
     if meeting
       obj =
         meetingId: meeting._id
       dbHandler.getAll(agendaDbName, obj).then (agendas) ->
-        message.meetingName = meetingName
-        message.agendas = agendas
-        agendaOutputter.output message
+        deferred.resolve agendas
     else
-      bot.reply message, 'meeting does not exist'
+      deferred.resolve false
+  return deferred.promise
+
+outputAllForMeeting = (message) ->
+  meetingName = message.parsedMessage.value
+  getAllForMeeting(meetingName).then (agendas) ->
+    if agendas
+      message.meetingName = meetingName
+      message.agendas = agendas
+      agendaOutputter.outputOne message
+    else
+      bot.reply message, 'unable to retrieve agenda'
 
 clearAllForMeeting = (message) ->
   meetingName = message.parsedMessage.value
@@ -46,7 +56,22 @@ clearAllForMeeting = (message) ->
     else
       bot.reply message, 'meeting does not exist'
 
+getAll = (message) ->
+  meetingHandler.getAll().then (meetings) ->
+    getAgendaForAllMeetings(meetings).then (meetings) ->
+      message.meetings = meetings
+      agendaOutputter.outputAll message
+
+getAgendaForAllMeetings = (meetings) ->
+  deferred = q.defer()
+  agendaMeetingMapper.map(meetings).then ->
+    console.log 'map done'
+    deferred.resolve meetings
+  return deferred.promise
+
 exports = this
 exports.create = create
-exports.getAllForMeeting = getAllForMeeting
+exports.outputAllForMeeting = outputAllForMeeting
 exports.clearAllForMeeting = clearAllForMeeting
+exports.getAll = getAll
+exports.getAllForMeeting = getAllForMeeting

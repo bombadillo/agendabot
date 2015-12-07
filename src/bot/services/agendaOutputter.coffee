@@ -1,19 +1,33 @@
 bot = require './botHandler'
 eol = require('os').EOL
 
-output = (message) ->
-  outputText = "*Agenda for #{message.meetingName}* #{eol}"
-
-  if message.agendas.length > 0
-    outputText += formatAll message.agendas
-  else
-    outputText += '_Agenda is clear_'
+outputOne = (message) ->
+  outputText = createOutput message.meetingName, message.agendas
   bot.reply message, outputText
 
-formatAll = (agendas) ->
+outputAll = (message) ->
+  outputText = ''
+
+  for meeting in message.meetings
+    outputText += createOutput meeting.name, meeting.agendas
+
+  bot.reply message, outputText
+
+createOutput = (meetingName, agendas) ->
+  outputText = "*Agenda for #{meetingName}* #{eol}"
+
+  if agendas.length > 0
+    outputText += formatAllAgendas agendas
+  else
+    outputText += "_Agenda is clear_#{eol}"
+  return outputText
+
+formatAllAgendas = (agendas) ->
+  outputText = ''
   for agenda in agendas
     outputText += "• #{agenda.name} #{eol}"
-  return outputText = outputText.slice 0, -2
+  return outputText
 
 exports = this
-exports.output = output
+exports.outputOne = outputOne
+exports.outputAll = outputAll

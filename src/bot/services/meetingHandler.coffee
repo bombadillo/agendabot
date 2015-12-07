@@ -31,6 +31,11 @@ remove = (message) ->
 getAll = (message) ->
   deferred = q.defer()
   dbHandler.getAll(meetingDbName).then (meetings) ->
+    deferred.resolve meetings
+  return deferred.promise
+
+outputAll = (message) ->
+  getAll(message).then (meetings) ->
     message.meetings = meetings
     meetingOutputter.output message
 
@@ -42,6 +47,7 @@ getOneByName = (name) ->
 
 exports = this
 exports.create = create
+exports.outputAll = outputAll
 exports.getAll = getAll
 exports.remove = remove
 exports.getOneByName = getOneByName
