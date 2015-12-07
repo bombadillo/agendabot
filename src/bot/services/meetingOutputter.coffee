@@ -1,11 +1,12 @@
-channel = require './channel'
+bot = require './botHandler'
 
 output = (message) ->
-  outputString = ''
+  outputText = ''
   for meeting in message.meetings
-    outputString += "#{meeting.name}, "
-  outputString = outputString.slice 0, -2
-  channel.sendMessageById message.channel, outputString
+    outputText += "#{meeting.name}, "
+  outputText = outputText.slice 0, -2
+  console.log outputText
+  bot.reply message, outputText
 
 exports = this
 exports.output = output
