@@ -1,5 +1,6 @@
 log = require '../../common/services/log'
 meetingHandler = require './meetingHandler'
+agendaHandler = require './agendaHandler'
 bot = require './botHandler'
 
 process = (message) ->
@@ -18,6 +19,7 @@ process = (message) ->
       meetingHandler.getAll message
     when 'addagenda'
       log.debug 'add agenda'
+      agendaHandler.create message
     else
       bot.reply message, 'the command was not recognised'
 

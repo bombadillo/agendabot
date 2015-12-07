@@ -44,3 +44,4 @@ exports = this
 exports.create = create
 exports.getAll = getAll
 exports.remove = remove
+exports.getOneByName = getOneByName
