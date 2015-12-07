@@ -2,8 +2,8 @@ log = require '../../common/services/log'
 meetingHandler = require './meetingHandler'
 
 process = (message) ->
-  log.info "processing action #{message.action}"
   action = message.parsedMessage.action
+  log.info "processing action #{action}"
 
   switch action
     when 'createmeeting'
