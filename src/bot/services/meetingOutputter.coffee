@@ -1,9 +1,10 @@
 bot = require './botHandler'
+eol = require('os').EOL
 
 output = (message) ->
-  outputText = ''
+  outputText = "*Meetings* #{eol}"
   for meeting in message.meetings
-    outputText += "#{meeting.name}, "
+    outputText += "• #{meeting.name} #{eol}"
   outputText = outputText.slice 0, -2
   bot.reply message, outputText
 
