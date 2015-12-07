@@ -33,6 +33,20 @@ getAllForMeeting = (message) ->
     else
       bot.reply message, 'meeting does not exist'
 
+clearAllForMeeting = (message) ->
+  meetingName = message.parsedMessage.value
+  meetingHandler.getOneByName(meetingName).then (meeting) ->
+    if meeting
+      obj =
+        meetingId: meeting._id
+      dbHandler.removeAll(agendaDbName, obj).then (resultObj) ->
+        result = resultObj.result.ok
+        outputText = if result then 'agenda cleared' else 'agenda not cleared'
+        bot.reply message, outputText
+    else
+      bot.reply message, 'meeting does not exist'
+
 exports = this
 exports.create = create
 exports.getAllForMeeting = getAllForMeeting
+exports.clearAllForMeeting = clearAllForMeeting

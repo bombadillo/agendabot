@@ -2,6 +2,10 @@ messageSplitter = require './messageSplitter'
 
 toObject = (text) ->
   split = messageSplitter.split(text)
+
+  if !split
+    return false
+
   action = split.messageTextSections[0] + split.messageTextSections[1]
   values = split.messageTextSections[2...split.length]
   valueString = ''

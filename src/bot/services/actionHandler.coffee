@@ -23,6 +23,9 @@ process = (message) ->
     when 'getagenda'
       log.debug 'get agenda'
       agendaHandler.getAllForMeeting message
+    when 'clearagenda'
+      log.debug 'clear agenda'
+      agendaHandler.clearAllForMeeting message
     else
       bot.reply message, 'the command was not recognised'
 

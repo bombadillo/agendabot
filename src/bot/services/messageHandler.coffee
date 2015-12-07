@@ -5,7 +5,10 @@ messageParser = require './messageParser'
 
 handle = (message) ->
   message = messageParser.parse message
-  if message.parsedMessage.userId == botHandler.getId message
+
+  if !message.parsedMessage
+    console.log ':('
+  else if message.parsedMessage.userId == botHandler.getId message
     actionHandler.process message
   else
     console.log ':('
