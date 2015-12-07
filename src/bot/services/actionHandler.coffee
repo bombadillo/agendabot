@@ -20,6 +20,9 @@ process = (message) ->
     when 'addagenda'
       log.debug 'add agenda'
       agendaHandler.create message
+    when 'getagenda'
+      log.debug 'get agenda'
+      agendaHandler.getAllForMeeting message
     else
       bot.reply message, 'the command was not recognised'
 
