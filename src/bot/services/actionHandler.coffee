@@ -2,6 +2,7 @@ log = require '../../common/services/log'
 meetingHandler = require './meetingHandler'
 agendaHandler = require './agendaHandler'
 bot = require './botHandler'
+commandListDisplayer = require './commandListDisplayer'
 
 process = (message) ->
   action = message.parsedMessage.action
@@ -29,8 +30,12 @@ process = (message) ->
     when 'clearagenda'
       log.debug 'clear agenda'
       agendaHandler.clearAllForMeeting message
+    when 'help'
+      log.debug 'help'
+      commandListDisplayer.displayAll message
     else
-      bot.reply message, 'the command was not recognised'
+      bot.reply message, 'The command was not recognised :eyes:'
+      bot.reply message, 'If you want help, use this `@agendabot help`'
 
 exports = this
 exports.process = process
