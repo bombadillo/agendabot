@@ -1,6 +1,6 @@
 http = require 'http'
 
-options = host: 'badslackbot.herokuapp.com'
+options = host: 'agendabotmco.herokuapp.com/'
 dataString = ''
 
 makeRequest = ->
