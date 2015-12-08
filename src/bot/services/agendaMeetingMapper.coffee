@@ -7,6 +7,7 @@ map = (meetings, deferred) ->
   mapMeeting(meetings[meetingMapIndex]).then (mappedMeeting) ->
     meeting = mappedMeeting
     if meetingMapIndex == meetings.length
+      meetingMapIndex = 0
       deferred.resolve meetings
     else
       map(meetings, deferred)
