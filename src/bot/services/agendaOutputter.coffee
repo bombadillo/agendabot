@@ -19,13 +19,13 @@ createOutput = (meetingName, agendas) ->
   if agendas.length > 0
     outputText += formatAllAgendas agendas
   else
-    outputText += "_Agenda is clear_#{eol}"
+    outputText += "_Agenda is empty_#{eol}"
   return outputText
 
 formatAllAgendas = (agendas) ->
   outputText = ''
   for agenda in agendas
-    outputText += "• #{agenda.name} #{eol}"
+    outputText += "> #{agenda.name} #{eol}"
   return outputText
 
 exports = this

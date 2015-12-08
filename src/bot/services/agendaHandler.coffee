@@ -65,7 +65,6 @@ getAll = (message) ->
 getAgendaForAllMeetings = (meetings) ->
   deferred = q.defer()
   agendaMeetingMapper.map(meetings).then ->
-    console.log 'map done'
     deferred.resolve meetings
   return deferred.promise
 
