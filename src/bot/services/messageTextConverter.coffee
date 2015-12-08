@@ -2,10 +2,9 @@ messageSplitter = require './messageSplitter'
 
 toObject = (text) ->
   split = messageSplitter.split(text)
-
   if !split
     return false
-
+    
   action = getAction(split)
   valueString = getValues(split)
 
