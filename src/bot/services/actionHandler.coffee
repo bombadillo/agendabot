@@ -8,8 +8,8 @@ process = (message) ->
   log.info "processing action #{action}"
 
   switch action
-    when 'createmeeting'
-      log.debug 'create meeting'
+    when 'addmeeting'
+      log.debug 'add meeting'
       meetingHandler.create message
     when 'removemeeting'
       log.debug 'delete meeting'
