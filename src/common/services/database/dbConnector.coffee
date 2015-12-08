@@ -1,8 +1,8 @@
 mongoClient = require('mongodb').MongoClient
-config = require '../config'
+config = require '../../config'
 url = config.databaseUri
 q = require 'q'
-log = require '../../common/services/log'
+log = require '../../../common/services/log'
 
 dbConnection = undefined
 
