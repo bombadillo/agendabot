@@ -14,12 +14,12 @@ outputAll = (message) ->
   bot.reply message, outputText
 
 createOutput = (meetingName, agendas) ->
-  outputText = "*Agenda for #{meetingName}* #{eol}"
+  outputText = "`Agenda for #{meetingName}` #{eol}"
 
   if agendas.length > 0
     outputText += formatAllAgendas agendas
   else
-    outputText += "_Agenda is empty_#{eol}"
+    outputText += ">_Agenda is empty_#{eol}"
   return outputText
 
 formatAllAgendas = (agendas) ->
