@@ -1,4 +1,5 @@
 dbConnector = require './dbConnector'
+BSON = require('bson').BSONPure
 q = require 'q'
 
 update = (collection, data) ->
