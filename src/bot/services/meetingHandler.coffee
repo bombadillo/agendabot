@@ -2,7 +2,7 @@ dbHandler = require '../../common/services/dbHandler'
 q = require 'q'
 meetingOutputter = require './meetingOutputter'
 bot = require './botHandler'
-
+agendaHandler = require './agendaHandler'
 meetingDbName = 'meeting'
 
 create = (message) ->
@@ -20,6 +20,7 @@ remove = (message) ->
   meetingName = message.parsedMessage.value
   getOneByName(meetingName).then (meeting) ->
     if meeting
+      agendaHandler.clearAllForMeeting message
       obj = name: meetingName
       dbHandler.removeOne(meetingDbName, obj).then (resultObj) ->
         result = resultObj.result.ok
