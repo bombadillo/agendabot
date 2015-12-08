@@ -1,5 +1,7 @@
 split = (text) ->
-  baseMessageSplit = text.split('>:')
+  baseMessageSplit = text.split '>:'
+  if baseMessageSplit.length < 2
+    baseMessageSplit = text.split '>'
 
   if baseMessageSplit.length < 2
     return false
