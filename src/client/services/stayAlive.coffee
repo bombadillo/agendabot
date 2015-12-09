@@ -1,6 +1,7 @@
 http = require 'http'
+config = require '../../common/config'
 
-options = host: 'agendabotmco.herokuapp.com/'
+options = host: config.appHost
 dataString = ''
 
 makeRequest = ->
