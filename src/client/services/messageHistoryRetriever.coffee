@@ -1,5 +1,5 @@
 fs = require 'fs'
-config = require '../../common/config'
+config = require '../../common/config/index'
 q = require 'q'
 logToArray = require './convertMessageHistoryData'
 

@@ -1,5 +1,5 @@
 http = require 'http'
-config = require '../../common/config'
+config = require '../../common/config/index'
 
 options = host: config.appHost
 dataString = ''

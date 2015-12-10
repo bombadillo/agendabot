@@ -1,5 +1,5 @@
 Slack = require 'slack-client'
-config = require '../../common/config'
+config = require '../../common/config/index'
 
 slackToken = config.botApiToken
 autoReconnect = true
