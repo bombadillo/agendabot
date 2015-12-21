@@ -1,7 +1,7 @@
 mongo = require './mongoDb'
 
 config =
-  botApiToken: 'xoxb-15931621845-Jcl3KI6tC4ptsAGDSO96sw9f'
+  botApiToken: 'xoxb-16183928887-ywc3KJ4KSzv03HnlNKKkEXBv'
   logFile: __dirname + '/../../log.json'
   databaseUri: "mongodb://#{mongo.userName}:#{mongo.password}@#{mongo.url}"
   appHost: 'agendabotmco.herokuapp.com'
