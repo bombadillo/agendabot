@@ -1,4 +1,6 @@
 split = (text) ->
+  if !text
+    return false
   baseMessageSplit = text.split '>:'
   if baseMessageSplit.length < 2
     baseMessageSplit = text.split '>'
